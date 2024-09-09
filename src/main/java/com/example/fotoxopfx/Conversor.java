@@ -1,5 +1,7 @@
 package com.example.fotoxopfx;
 
+import ij.ImagePlus;
+import ij.process.ImageProcessor;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import java.awt.image.BufferedImage;
@@ -60,5 +62,31 @@ public class Conversor {
             }
         }
         return SwingFXUtils.toFXImage(bimg, null);
+    }
+
+    public static Image espelharHorizontal (Image image) {
+        BufferedImage bimg;
+        bimg= SwingFXUtils.fromFXImage(image, null);
+
+        int pixel[] = { 0 , 0 , 0 , 0 };
+        int pixelEsp[] = { 0, 0, 0, 0 };
+        WritableRaster raster=bimg.getRaster();
+
+        for (int lin =0; lin < image.getHeight(); lin++) {
+            for (int col =0, maxCol=(int)image.getWidth()-1; col < image.getWidth(); col++, maxCol--) {
+                raster.getPixel(col,lin,pixel);
+                raster.setPixel(maxCol,lin,pixel);
+            }
+        }
+        return SwingFXUtils.toFXImage(bimg, null);
+    }
+
+    static public Image detectarBordasIJ (Image image) {
+        ImagePlus imagePlus = new ImagePlus();
+        BufferedImage bimg = SwingFXUtils.fromFXImage(image, null);
+        imagePlus.setImage(bimg);
+        ImageProcessor imageProcessor = imagePlus.getProcessor();
+        imageProcessor.findEdges();
+        return SwingFXUtils.toFXImage(imagePlus.getBufferedImage(), null);
     }
 }

@@ -35,8 +35,8 @@ public class MainController implements Initializable {
         if (file != null) {
             Image image = new Image(file.toURI().toString());
             imageView.setImage(image);
-            imageView.setFitWidth(image.getWidth());
-            imageView.setFitHeight(image.getHeight());
+            imageView.setFitWidth(800);
+            imageView.setFitHeight(600);
         }
     }
 
@@ -63,5 +63,10 @@ public class MainController implements Initializable {
     }
 
     public void onEpelharHorizontal(ActionEvent actionEvent) {
+        imageView.setImage(Conversor.espelharHorizontal(imageView.getImage()));
+    }
+
+    public void onDetectarBordas(ActionEvent actionEvent) {
+        imageView.setImage(Conversor.detectarBordasIJ(imageView.getImage()));
     }
 }

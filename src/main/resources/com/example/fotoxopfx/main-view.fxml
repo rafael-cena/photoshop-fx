@@ -55,6 +55,11 @@
                     <MenuItem onAction="#onTonsCinza" text="_Tons de Cinza" />
                         <MenuItem mnemonicParsing="false" onAction="#onPretoBranco" text="Preto e Branco" />
                         <MenuItem mnemonicParsing="false" onAction="#onEpelharHorizontal" text="Espelhar Horizontal" />
+                        <Menu mnemonicParsing="false" text="ImageJ">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#onDetectarBordas" text="Detectar Bordas" />
+                          </items>
+                        </Menu>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Ajuda">
@@ -64,9 +69,9 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: darkgray;">
+            <ToolBar minHeight="75.0" prefHeight="75.0" prefWidth="800.0" style="-fx-background-color: darkgray;">
               <items>
-                <Button mnemonicParsing="false" text="Button" />
+                <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onAbrir" style="-fx-background-image: url('open_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
               </items>
             </ToolBar>
          </children>
