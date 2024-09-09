@@ -72,10 +72,17 @@ public class Conversor {
         int pixelEsp[] = { 0, 0, 0, 0 };
         WritableRaster raster=bimg.getRaster();
 
+        int metLarg = (int) image.getWidth()/2;
+
         for (int lin =0; lin < image.getHeight(); lin++) {
-            for (int col =0, maxCol=(int)image.getWidth()-1; col < image.getWidth(); col++, maxCol--) {
+            for (int col =0; col < metLarg; col++) {
+                int colEsp = (int) image.getWidth() - col-1;
+
                 raster.getPixel(col,lin,pixel);
-                raster.setPixel(maxCol,lin,pixel);
+                raster.getPixel(colEsp,lin,pixelEsp);
+
+                raster.setPixel(col,lin,pixelEsp);
+                raster.setPixel(colEsp,lin,pixel);
             }
         }
         return SwingFXUtils.toFXImage(bimg, null);
@@ -88,5 +95,29 @@ public class Conversor {
         ImageProcessor imageProcessor = imagePlus.getProcessor();
         imageProcessor.findEdges();
         return SwingFXUtils.toFXImage(imagePlus.getBufferedImage(), null);
+    }
+
+    public static Image espelharVertical(Image image) {
+        BufferedImage bimg;
+        bimg= SwingFXUtils.fromFXImage(image, null);
+
+        int pixel[] = { 0 , 0 , 0 , 0 };
+        int pixelEsp[] = { 0, 0, 0, 0 };
+        WritableRaster raster=bimg.getRaster();
+
+        int metAlt = (int) image.getHeight()/2;
+
+        for (int lin =0; lin < metAlt; lin++) {
+            for (int col =0; col < image.getWidth(); col++) {
+                int linEsp = (int) image.getHeight() - lin-1;
+
+                raster.getPixel(col,lin,pixel);
+                raster.getPixel(col,linEsp,pixelEsp);
+
+                raster.setPixel(col,lin,pixelEsp);
+                raster.setPixel(col,linEsp,pixel);
+            }
+        }
+        return SwingFXUtils.toFXImage(bimg, null);
     }
 }

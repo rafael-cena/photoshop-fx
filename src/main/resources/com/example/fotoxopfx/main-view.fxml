@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fotoxopfx.MainController">
+<BorderPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fotoxopfx.MainController">
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
@@ -54,7 +54,7 @@
                   <items>
                     <MenuItem onAction="#onTonsCinza" text="_Tons de Cinza" />
                         <MenuItem mnemonicParsing="false" onAction="#onPretoBranco" text="Preto e Branco" />
-                        <MenuItem mnemonicParsing="false" onAction="#onEpelharHorizontal" text="Espelhar Horizontal" />
+                        <MenuItem mnemonicParsing="false" onAction="#onEspelharHorizontal" text="Espelhar Horizontal" />
                         <Menu mnemonicParsing="false" text="ImageJ">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#onDetectarBordas" text="Detectar Bordas" />
@@ -72,6 +72,10 @@
             <ToolBar minHeight="75.0" prefHeight="75.0" prefWidth="800.0" style="-fx-background-color: darkgray;">
               <items>
                 <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onAbrir" style="-fx-background-image: url('open_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
+                  <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onSalvar" style="-fx-background-image: url('save_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
+                  <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onEspelharHorizontal" style="-fx-background-image: url('hesp_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
+                  <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onEspelharVertical" style="-fx-background-image: url('vesp_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
+                  <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onAbrir" style="-fx-background-image: url('open_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
               </items>
             </ToolBar>
          </children>
