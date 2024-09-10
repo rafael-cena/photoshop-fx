@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane minHeight="400.0" minWidth="300.0" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fotoxopfx.AboutController">
+   <center>
+      <VBox maxWidth="200.0" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Este aplicativo foi desenvolvido por Rafael Cena Santos, para uma atividade da disciplina de Ferramentas Computacionais II no segundo semestre de 2024." wrappingWidth="200.65625" />
+            <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As funcionalidades atribuídas a ele são para, principalmente, transformar uma imagem." wrappingWidth="200.65625" />
+            <Text layoutX="10.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="São elas Abrir uma Imagem, Salvar, Salvar Como (onde o usuario define o nome a ser salvo), Sair. Em Transformações tem-se Tons de Cinza, Preto e Branco, Negativo, Espelhar Horizontalmente, Espelhar Verticalmente, Destacar Bordas (implementado com ImageJ)." wrappingWidth="200.65625" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

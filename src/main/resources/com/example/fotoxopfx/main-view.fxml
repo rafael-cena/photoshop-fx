@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fotoxopfx.MainController">
+<BorderPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fotoxopfx.MainController">
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
@@ -53,8 +53,10 @@
                 <Menu mnemonicParsing="false" text="_Transformações">
                   <items>
                     <MenuItem onAction="#onTonsCinza" text="_Tons de Cinza" />
-                        <MenuItem mnemonicParsing="false" onAction="#onPretoBranco" text="Preto e Branco" />
-                        <MenuItem mnemonicParsing="false" onAction="#onEspelharHorizontal" text="Espelhar Horizontal" />
+                        <MenuItem onAction="#onPretoBranco" text="_Preto e Branco" />
+                        <MenuItem onAction="#onNegativo" text="_Negativo" />
+                        <MenuItem onAction="#onEspelharHorizontal" text="Espelhar _Horizontal" />
+                        <MenuItem onAction="#onEspelharVertical" text="Espelhar _Vertical" />
                         <Menu mnemonicParsing="false" text="ImageJ">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#onDetectarBordas" text="Detectar Bordas" />
@@ -64,7 +66,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Ajuda">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Sobre" />
+                    <MenuItem mnemonicParsing="false" onAction="#onSobre" text="Sobre" />
                   </items>
                 </Menu>
               </menus>
@@ -73,9 +75,10 @@
               <items>
                 <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onAbrir" style="-fx-background-image: url('open_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
                   <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onSalvar" style="-fx-background-image: url('save_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
+                  <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onSalvarComo" style="-fx-background-image: url('saveas_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
                   <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onEspelharHorizontal" style="-fx-background-image: url('hesp_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
                   <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onEspelharVertical" style="-fx-background-image: url('vesp_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
-                  <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onAbrir" style="-fx-background-image: url('open_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
+                  <Button maxHeight="64.0" maxWidth="64.0" minHeight="64.0" minWidth="64.0" mnemonicParsing="false" onAction="#onSobre" style="-fx-background-image: url('about_icon.png'); -fx-background-position: center center; -fx-background-repeat: no-repeat; -fx-background-color: transparent;" />
               </items>
             </ToolBar>
          </children>

@@ -3,20 +3,26 @@ package com.example.fotoxopfx;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.lang.reflect.AnnotatedArrayType;
 import java.net.URL;
+import java.nio.Buffer;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     public ImageView imageView;
+    public File file;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,7 +40,7 @@ public class MainController implements Initializable {
                 ,new FileChooser.ExtensionFilter("PNG", "*.png")
                 ,new FileChooser.ExtensionFilter("BMP", "*.bmp")
         );
-        File file = fileChooser.showOpenDialog(null);
+        file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
             Image image = new Image(file.toURI().toString());
@@ -45,19 +51,10 @@ public class MainController implements Initializable {
     }
 
     public void onSalvar(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("D://"));
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image", "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.webp")
-                ,new FileChooser.ExtensionFilter("JPG", "*.jpg")
-                ,new FileChooser.ExtensionFilter("JPEG", "*.jpeg")
-                ,new FileChooser.ExtensionFilter("PNG", "*.png")
-                ,new FileChooser.ExtensionFilter("BMP", "*.bmp")
-        );
-        File arq = fileChooser.showSaveDialog(null);
-        if (arq != null) {
-            Image image = imageView.getImage();
+        Image image = imageView.getImage();
+        if (file != null) {
             BufferedImage bimg = SwingFXUtils.fromFXImage(image, null);
+
             /* tratamento para salvar uma imagem modificada*/
             BufferedImage copy = new BufferedImage(bimg.getWidth(), bimg.getHeight(), BufferedImage.TYPE_INT_RGB);
             Graphics2D g2d = copy.createGraphics();
@@ -66,8 +63,9 @@ public class MainController implements Initializable {
             g2d.drawImage(bimg, 0, 0, null);
             g2d.dispose();
             /* fim do tratamento*/
+
             try {
-                ImageIO.write(bimg, String.valueOf(fileChooser.getSelectedExtensionFilter()), arq);
+                ImageIO.write(copy, "jpg", file);
             } catch(Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -75,6 +73,36 @@ public class MainController implements Initializable {
     }
 
     public void onSalvarComo(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("D://"));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image", "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.webp")
+                ,new FileChooser.ExtensionFilter("jpg", "*.jpg")
+                ,new FileChooser.ExtensionFilter("jpeg", "*.jpeg")
+                ,new FileChooser.ExtensionFilter("png", "*.png")
+                ,new FileChooser.ExtensionFilter("bmp", "*.bmp")
+        );
+        File arq = fileChooser.showSaveDialog(null);
+
+        Image image = imageView.getImage();
+        if (arq != null) {
+            BufferedImage bimg = SwingFXUtils.fromFXImage(image, null);
+
+            /* tratamento para salvar uma imagem modificada*/
+            BufferedImage copy = new BufferedImage(bimg.getWidth(), bimg.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = copy.createGraphics();
+            g2d.setColor(Color.WHITE); // Or what ever fill color you want...
+            g2d.fillRect(0, 0, copy.getWidth(), copy.getHeight());
+            g2d.drawImage(bimg, 0, 0, null);
+            g2d.dispose();
+            /* fim do tratamento*/
+
+            try {
+                ImageIO.write(copy, "jpg", arq);
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void onSair(ActionEvent actionEvent) {
@@ -103,5 +131,13 @@ public class MainController implements Initializable {
 
     public void onEspelharVertical(ActionEvent actionEvent) {
         imageView.setImage(Conversor.espelharVertical(imageView.getImage()));
+    }
+
+    public void onSobre(ActionEvent actionEvent) {
+
+    }
+
+    public void onNegativo(ActionEvent actionEvent) {
+        imageView.setImage(Conversor.negativo(imageView.getImage()));
     }
 }

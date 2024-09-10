@@ -120,4 +120,28 @@ public class Conversor {
         }
         return SwingFXUtils.toFXImage(bimg, null);
     }
+
+    public static Image negativo(Image image) {
+        // converte um Image em BufferedImage
+        BufferedImage bimg;
+        bimg= SwingFXUtils.fromFXImage(image, null);
+        // captura pixels da imagem
+
+        //           Red  Green Blue Alpha
+        int pixel[] = { 0 , 0 , 0 , 0 };
+        WritableRaster raster=bimg.getRaster();
+        for (int lin =0; lin < image.getHeight(); lin++) {
+            for (int col =0; col < image.getWidth(); col++) {
+                raster.getPixel(col,lin,pixel);
+                pixel[0] = 255-pixel[0];
+                pixel[1] = 255-pixel[1];
+                pixel[2] = 255-pixel[2];
+
+                raster.setPixel(col,lin,pixel);
+            }
+        }
+
+        // se necessário, volte para um Image
+        return SwingFXUtils.toFXImage(bimg, null);
+    }
 }
