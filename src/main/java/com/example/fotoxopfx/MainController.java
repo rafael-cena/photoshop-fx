@@ -9,12 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.AnnotatedArrayType;
 import java.net.URL;
 import java.nio.Buffer;
@@ -106,7 +110,18 @@ public class MainController implements Initializable {
     }
 
     public void onSair(ActionEvent actionEvent) {
-        Platform.exit();
+        Image image = imageView.getImage();
+        Image initImage = new Image(file.toURI().toString());
+
+        if (!Conversor.compararImagens(image, initImage)) {
+            System.out.println("img diferente");
+            if (JOptionPane.showConfirmDialog(null, "Deseja sair?", "Confirmação", JOptionPane.YES_NO_OPTION) == 1) {
+                Platform.exit();
+            }
+            else if (JOptionPane.showConfirmDialog(null, "Deseja sair mesmo assim?", "Você possui alterações NÃO salvas", JOptionPane.YES_NO_OPTION) == 1) {
+                Platform.exit();
+            }
+        }
     }
 
     public void onTonsCinza(ActionEvent actionEvent) {
@@ -133,8 +148,16 @@ public class MainController implements Initializable {
         imageView.setImage(Conversor.espelharVertical(imageView.getImage()));
     }
 
-    public void onSobre(ActionEvent actionEvent) {
-
+    public void onSobre(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PhotoShopFX.class.getResource("about-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 300, 400);
+        Stage stage = new Stage();
+        stage.setTitle("Sobre o Aplicativo");
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.showAndWait();
     }
 
     public void onNegativo(ActionEvent actionEvent) {

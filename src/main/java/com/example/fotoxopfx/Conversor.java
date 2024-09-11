@@ -144,4 +144,33 @@ public class Conversor {
         // se necessário, volte para um Image
         return SwingFXUtils.toFXImage(bimg, null);
     }
+
+    public static boolean compararImagens(Image image, Image initImage) {
+        // converte um Image em BufferedImage
+        BufferedImage bimg, bimgInit;
+        bimg= SwingFXUtils.fromFXImage(image, null);
+        bimgInit = SwingFXUtils.fromFXImage(initImage, null);
+        // captura pixels da imagem
+
+        //           Red  Green Blue Alpha
+        int pixel[] = { 0 , 0 , 0 , 0 };
+        int pixelInit[] = { 0, 0, 0, 0 };
+
+        WritableRaster raster=bimg.getRaster();
+        WritableRaster rasterInit=bimgInit.getRaster();
+        for (int lin =0; lin < image.getHeight(); lin++) {
+            for (int col =0; col < image.getWidth(); col++) {
+                raster.getPixel(col,lin,pixel);
+                rasterInit.getPixel(col,lin,pixelInit);
+
+                for (int i = 0; i < pixel.length; i++) {
+                    if (pixel[i] != pixelInit[i]) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
 }
