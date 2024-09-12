@@ -13,7 +13,7 @@ public class PhotoShopFX extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(PhotoShopFX.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setScene(scene);
-        stage.setTitle("FotoxopFX");
+        stage.setTitle("PhotoshopFX");
         stage.setMaximized(true);
         stage.show();
     }

@@ -11,7 +11,7 @@
    <center>
       <VBox alignment="CENTER" maxWidth="200.0" minHeight="287.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="287.0" prefWidth="201.0" style="-fx-padding: 4px 12px; -fx-border-color: #101720; -fx-background-color: #f8f9fa;" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Este aplicativo foi desenvolvido por Rafael Cena Santos, para uma atividade do curso de Ciência da Computação na disciplina de Ferramentas Computacionais II no segundo semestre de 2024." textAlignment="JUSTIFY" wrappingWidth="200.65625" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Este aplicativo foi desenvolvido por Rafael Cena Santos e Walter Gomes de Oliveira Pinhal Neto, para uma atividade do curso de Ciência da Computação na disciplina de Ferramentas Computacionais II no segundo semestre de 2024." textAlignment="JUSTIFY" wrappingWidth="200.65625" />
             <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As funcionalidades atribuídas a ele são para, principalmente, transformar ou editar uma imagem." textAlignment="JUSTIFY" wrappingWidth="200.65625" />
             <Text layoutX="10.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="São elas Abrir uma Imagem, Salvar, Salvar Como (onde o usuario define o nome a ser salvo), Sair. Em Transformações tem-se Tons de Cinza, Preto e Branco, Negativo, Espelhar Horizontalmente, Espelhar Verticalmente, Destacar Bordas (implementado com ImageJ)." textAlignment="JUSTIFY" wrappingWidth="200.65625" />
          </children>

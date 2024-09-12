@@ -6,6 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -22,15 +25,23 @@ import java.io.IOException;
 import java.lang.reflect.AnnotatedArrayType;
 import java.net.URL;
 import java.nio.Buffer;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     public ImageView imageView;
     public File file;
+    private boolean imagemAlterada = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Platform.runLater(() -> {
+            Stage stage = (Stage) imageView.getScene().getWindow();
+            stage.setOnCloseRequest(event -> {
+                event.consume(); // Consumir o evento para que a aplicação não feche imediatamente
+                sairComConfirmacao();
+            });
+        });
     }
 
     public void onAbrir(ActionEvent actionEvent) {
@@ -110,17 +121,58 @@ public class MainController implements Initializable {
     }
 
     public void onSair(ActionEvent actionEvent) {
-        Image image = imageView.getImage();
-        Image initImage = new Image(file.toURI().toString());
+        if (imagemAlterada) {
+            // Exibe um alerta de confirmação
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Salvar Alterações");
+            alert.setHeaderText("Você tem alterações não salvas.");
+            alert.setContentText("Deseja salvar as alterações antes de sair?");
 
-        if (!Conversor.compararImagens(image, initImage)) {
-            System.out.println("img diferente");
-            if (JOptionPane.showConfirmDialog(null, "Deseja sair?", "Confirmação", JOptionPane.YES_NO_OPTION) == 1) {
-                Platform.exit();
+            ButtonType buttonSalvar = new ButtonType("Salvar");
+            ButtonType buttonNaoSalvar = new ButtonType("Não Salvar");
+            ButtonType buttonCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonSalvar, buttonNaoSalvar, buttonCancelar);
+
+            // Espera pela resposta do usuário
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent()) {
+                if (result.get() == buttonSalvar) {
+                    onSalvar(actionEvent);
+                    Platform.exit();
+                } else if (result.get() == buttonNaoSalvar) {
+                    Platform.exit();
+                }
             }
-            else if (JOptionPane.showConfirmDialog(null, "Deseja sair mesmo assim?", "Você possui alterações NÃO salvas", JOptionPane.YES_NO_OPTION) == 1) {
-                Platform.exit();
+        } else {
+            Platform.exit();
+        }
+    }
+
+    public void sairComConfirmacao() {
+        if (imagemAlterada) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Salvar Alterações");
+            alert.setHeaderText("Você tem alterações não salvas.");
+            alert.setContentText("Deseja salvar as alterações antes de sair?");
+
+            ButtonType buttonSalvar = new ButtonType("Salvar");
+            ButtonType buttonNaoSalvar = new ButtonType("Não Salvar");
+            ButtonType buttonCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonSalvar, buttonNaoSalvar, buttonCancelar);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent()) {
+                if (result.get() == buttonSalvar) {
+                    onSalvar(null);
+                    Platform.exit();
+                } else if (result.get() == buttonNaoSalvar) {
+                    Platform.exit();
+                }
             }
+        } else {
+            Platform.exit();
         }
     }
 
@@ -128,24 +180,29 @@ public class MainController implements Initializable {
         Image image = imageView.getImage();
         image = Conversor.tonsCinza(image);
         imageView.setImage(image);
+        imagemAlterada = true;
     }
 
     public void onPretoBranco(ActionEvent actionEvent) {
         Image image = imageView.getImage();
         image = Conversor.pretoBranco(image);
         imageView.setImage(image);
+        imagemAlterada = true;
     }
 
     public void onEspelharHorizontal(ActionEvent actionEvent) {
         imageView.setImage(Conversor.espelharHorizontal(imageView.getImage()));
+        imagemAlterada = true;
     }
 
     public void onDetectarBordas(ActionEvent actionEvent) {
         imageView.setImage(Conversor.detectarBordasIJ(imageView.getImage()));
+        imagemAlterada = true;
     }
 
     public void onEspelharVertical(ActionEvent actionEvent) {
         imageView.setImage(Conversor.espelharVertical(imageView.getImage()));
+        imagemAlterada = true;
     }
 
     public void onSobre(ActionEvent actionEvent) throws IOException {
@@ -162,5 +219,6 @@ public class MainController implements Initializable {
 
     public void onNegativo(ActionEvent actionEvent) {
         imageView.setImage(Conversor.negativo(imageView.getImage()));
+        imagemAlterada = true;
     }
 }
