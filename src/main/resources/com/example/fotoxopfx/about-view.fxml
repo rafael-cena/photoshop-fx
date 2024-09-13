@@ -7,13 +7,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="400.0" minWidth="300.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #101720;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fotoxopfx.AboutController">
+<BorderPane minHeight="400.0" minWidth="300.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #101720;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fotoxopfx.AboutController">
    <center>
-      <VBox alignment="CENTER" maxWidth="200.0" minHeight="287.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="287.0" prefWidth="201.0" style="-fx-padding: 4px 12px; -fx-border-color: #101720; -fx-background-color: #f8f9fa;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxWidth="300.0" minHeight="280.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="280.0" prefWidth="300.0" style="-fx-padding: 4px 12px; -fx-border-color: #101720; -fx-background-color: #f8f9fa;" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Este aplicativo foi desenvolvido por Rafael Cena Santos e Walter Gomes de Oliveira Pinhal Neto, para uma atividade do curso de Ciência da Computação na disciplina de Ferramentas Computacionais II no segundo semestre de 2024." textAlignment="JUSTIFY" wrappingWidth="200.65625" />
-            <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As funcionalidades atribuídas a ele são para, principalmente, transformar ou editar uma imagem." textAlignment="JUSTIFY" wrappingWidth="200.65625" />
-            <Text layoutX="10.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="São elas Abrir uma Imagem, Salvar, Salvar Como (onde o usuario define o nome a ser salvo), Sair. Em Transformações tem-se Tons de Cinza, Preto e Branco, Negativo, Espelhar Horizontalmente, Espelhar Verticalmente, Destacar Bordas (implementado com ImageJ)." textAlignment="JUSTIFY" wrappingWidth="200.65625" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Este aplicativo foi desenvolvido por Rafael Cena Santos e Walter Gomes de Oliveira Pinhal Neto, para uma atividade do curso de Ciência da Computação na disciplina de Ferramentas Computacionais II no segundo semestre de 2024." textAlignment="JUSTIFY" wrappingWidth="230.0" />
+            <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As funcionalidades atribuídas a ele são para, principalmente, transformar ou editar uma imagem." textAlignment="JUSTIFY" wrappingWidth="230.0" />
+            <Text layoutX="10.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="São elas Abrir uma Imagem, Salvar, Salvar Como (onde o usuario define o nome a ser salvo), Sair. Em Transformações tem-se Tons de Cinza, Preto e Branco, Negativo, Espelhar Horizontalmente, Espelhar Verticalmente. Além destas, foram implementadas funções da biblioteca ImageJ como Destacar Bordas, Ruídos, Borrão, Corroer e Dilatar a imagem." textAlignment="JUSTIFY" wrappingWidth="230.0" />
          </children>
          <opaqueInsets>
             <Insets />

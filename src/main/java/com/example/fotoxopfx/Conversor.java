@@ -1,9 +1,12 @@
 package com.example.fotoxopfx;
 
+import ij.ImageJ;
 import ij.ImagePlus;
 import ij.process.ImageProcessor;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
@@ -94,6 +97,42 @@ public class Conversor {
         imagePlus.setImage(bimg);
         ImageProcessor imageProcessor = imagePlus.getProcessor();
         imageProcessor.findEdges();
+        return SwingFXUtils.toFXImage(imagePlus.getBufferedImage(), null);
+    }
+
+    static public Image ruidosIJ (Image image) {
+        ImagePlus imagePlus = new ImagePlus();
+        BufferedImage bimg = SwingFXUtils.fromFXImage(image, null);
+        imagePlus.setImage(bimg);
+        ImageProcessor imageProcessor = imagePlus.getProcessor();
+        imageProcessor.noise(20);
+        return SwingFXUtils.toFXImage(imagePlus.getBufferedImage(), null);
+    }
+
+    static public Image borraoIJ (Image image) {
+        ImagePlus imagePlus = new ImagePlus();
+        BufferedImage bimg = SwingFXUtils.fromFXImage(image, null);
+        imagePlus.setImage(bimg);
+        ImageProcessor imageProcessor = imagePlus.getProcessor();
+        imageProcessor.blurGaussian(10);
+        return SwingFXUtils.toFXImage(imagePlus.getBufferedImage(), null);
+    }
+
+    static public Image corroerIJ (Image image) {
+        ImagePlus imagePlus = new ImagePlus();
+        BufferedImage bimg = SwingFXUtils.fromFXImage(image, null);
+        imagePlus.setImage(bimg);
+        ImageProcessor imageProcessor = imagePlus.getProcessor();
+        imageProcessor.erode();
+        return SwingFXUtils.toFXImage(imagePlus.getBufferedImage(), null);
+    }
+
+    static public Image dilatarIJ (Image image) {
+        ImagePlus imagePlus = new ImagePlus();
+        BufferedImage bimg = SwingFXUtils.fromFXImage(image, null);
+        imagePlus.setImage(bimg);
+        ImageProcessor imageProcessor = imagePlus.getProcessor();
+        imageProcessor.dilate();
         return SwingFXUtils.toFXImage(imagePlus.getBufferedImage(), null);
     }
 
